@@ -1,0 +1,129 @@
+ Day 2: Loss Functions & Activation Functions in Neural Networks
+
+ 📌 Keywords & Core Concepts
+
+- **Neural Network:** Computational model inspired by human intelligence.
+- **Vanishing Gradient Problem:** Gradients get extremely small in deep networks (early layers barely learn).
+- **Exploding Gradient Problem:** Gradients become excessively large, leading to unstable updates and failed training.
+- **Overfitting:** Model memorizes noise in training data, leading to poor performance on new data.
+- **Underfitting:** Model is too simple (cannot capture underlying patterns), leading to poor performance everywhere.
+- **Training Parameters:** e.g., GPT-3: 175B, GPT-4: 1T parameters.
+- **Hyperparameter:** Parameter set before training (not learned from data); e.g., learning rate, batch size, number of epochs, etc.
+
+---
+
+ ⚙️ Hyperparameters & Their Importance
+
+| Hyperparameter                | Description                         | Typical Values     | Effect                                        |
+|-------------------------------|-------------------------------------|--------------------|-----------------------------------------------|
+| **Learning Rate (α)**         | Step size for weight updates        | 0.01, 0.001        | High: overshoot; Low: slow learning           |
+| **Batch Size**                | Training samples per update         | 16, 32, 64, 128    | Small: noisy but better generalization        |
+| **Number of Epochs**          | Full passes over training data      | 10, 50, 100        | Too many: overfitting; Too few: underfitting  |
+| **Hidden Layers**             | Depth of the network                | 1–10               | More layers: better features, overfit risk    |
+| **Neurons per Layer**         | Units per layer                     | 32, 64, 128, 512   | More: complex, high compute                    |
+| **Dropout Rate**              | % neurons dropped during training   | 0.1–0.5            | High: prevents overfitting, too high slows    |
+| **Optimizer**                 | Algorithm for updating weights      | SGD, Adam, RMSprop | Convergence speed & stability                  |
+| **Activation Function**       | Passing info between layers         | ReLU, Sigmoid      | Enables non-linearity                          |
+| **Weight Initialization**     | How weights are set pre-training    | Xavier, He, random | Bad init = slow or stuck learning              |
+
+> All hyperparameters are set by experiment—no universal best values!
+
+---
+
+ 📉 Loss/Cost/Error Functions
+
+- **Loss Function:** Measures how far predictions are from true values.
+- For regression: `Loss = (y_true - y_pred)^2` (Mean Squared Error)
+
+For sigmoid output neuron
+- ŷ = σ(z), where σ(z) = 1 / (1+e⁻ᶻ), z = wx + b
+- Loss: c = (y - ŷ)²
+- Backprop derivatives:
+    - δc/δw = -2(y - ŷ) * σ(z) * (1-σ(z)) * x
+    - δc/δb = -2(y - ŷ) * σ(z) * (1-σ(z))
+
+ 🏷️ Common Loss Functions
+
+ Regression
+- **MSE (Mean Squared Error):** Penalizes larger errors strongly.
+- **MAE (Mean Absolute Error):** Penalizes all errors equally.
+- **MSLE (Mean Squared Logarithmic Error):** Penalizes small differences more.
+- **Huber Loss:** Robust to outliers.
+- **Log Cosh:** Smooth loss, less sensitive to outliers.
+
+ Classification
+- **Binary Cross-Entropy:** For binary classification (spam/not spam).
+- **Categorical Cross-Entropy:** For multi-class, one-hot labels.
+- **Sparse Categorical Cross-Entropy:** For multi-class, integer labels.
+- **Hinge & Squared Hinge Loss:** For SVM/max-margin tasks.
+- **KL Divergence:** For probability distributions (e.g., VAEs).
+- **Cosine Similarity Loss:** For similarity learning.
+- **Poisson Loss:** For count-based data (e.g., events prediction).
+
+---
+
+## 🟠 Key Regression Losses
+- **MSE:** Average of squared error (used for regression).
+- **MAE:** Average of absolute error.
+- **Huber Loss:** Blends MSE & MAE, robust to outliers.
+
+## 🟦 Key Classification Losses
+- **Binary Cross-Entropy:** Binary outcomes.
+- **Categorical Cross-Entropy:** Classification with one-hot encoding.
+- **Sparse Categorical Cross-Entropy:** Classification with integer labels.
+
+---
+
+## 🔄 Typical Neural Network Training Steps
+
+1. **Forward Pass:** Input flows through layers to produce predictions.
+2. **Compute Loss**
+3. **Backward Propagation:** Calculate gradients of loss w.r.t weights and biases.
+4. **Optimization:** Update weights and biases using optimizer (e.g., Adam, SGD).
+
+---
+
+## ⚡ Optimizers
+
+| Optimizer           | When / Notes                                         |
+|---------------------|------------------------------------------------------|
+| **GD**              | Large datasets, slow, batch update                   |
+| **SGD**             | Fast, per-sample update, noisy                       |
+| **Mini-Batch GD**   | Mix of GD & SGD (default in deep learning)           |
+| **Momentum**        | Faster convergence, smooth updates                   |
+| **Nesterov**        | Better than momentum for convex surfaces             |
+| **Adagrad**         | Adaptive rates, good for sparse features             |
+| **RMSprop**         | Good for RNNs, NLP                                   |
+| **Adam**            | Most common, adaptive, reliable                      |
+| **AdamW**           | Adam + weight decay regularization                   |
+| **AdaDelta**        | Adaptive, no manual rate, higher compute             |
+| **Nadam**           | Adam with Nesterov, best of both                     |
+
+> Start with Adam + mini-batch + ReLU in most projects.
+
+---
+
+ 🧮 Activation Functions
+
+| Name         | Formula / Idea                    | Use cases & Notes                           |
+|--------------|-----------------------------------|---------------------------------------------|
+| **Sigmoid**  | 1/(1+e⁻ᶻ)                         | Binary classification, output layer         |
+| **Tanh**     | (eᶻ−e⁻ᶻ)/(eᶻ+e⁻ᶻ)                | Hidden layers, better for centered data     |
+| **ReLU**     | max(0, z)                         | Most hidden layers (fast, sparse signals)   |
+| **Leaky ReLU**| max(αz, z), α~0.01               | Fixes “dying ReLU” problem                  |
+| **Softmax**  | exp(zᵢ)/Σexp(zⱼ)                  | Multi-class classification, output layer    |
+| **ELU**      | Exponential Linear Unit           | Faster convergence in deep nets             |
+| **Swish**    | Advanced, smooth nonlinearity     | Deep networks, sometimes outperforms ReLU   |
+| **Softplus** | Smooth approximation of ReLU      | Avoids zero gradients                       |
+
+---
+
+ ❗ Important Points & Best Practices
+
+- Vanishing/exploding gradients: Use good initialization (He/Xavier), normalization, or residual paths.
+- Overfitting: Use dropout, validation loss monitoring, early stopping, and regularization.
+- Hyperparameter tuning is essential – no universal best.
+- Loss selection: Use regression losses (MSE/Huber) for regression, cross-entropy for classification.
+- For most tasks: Start with Adam optimizer and ReLU activation.
+
+
