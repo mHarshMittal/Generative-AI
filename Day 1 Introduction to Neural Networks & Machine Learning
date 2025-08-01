@@ -1,0 +1,166 @@
+Introduction to Neural Networks & Machine Learning
+
+Table of Contents
+
+Overview
+
+Neural Networks: Core Concepts
+Categories of Machine Learning
+General Machine Learning Workflow
+Linear Regression Explained
+Neural Network Architecture
+Training a Neural Network
+Activation Functions
+Example Applications
+
+1. Overview
+Artificial Intelligence (AI), Machine Learning (ML), and Deep Learning (DL) are interconnected fields.
+
+Neural Networks (NN) are the backbone of Deep Learning.
+
+Recent AI innovations (e.g., LLMs like GPT, Claude, Gemini, Mistral) rely on advanced neural architectures.
+
+2. Neural Networks: Core Concepts
+Neural Networks mimic how the human brain processes information, using layers of simple units called neurons.
+
+Deep Learning involves networks with many hidden layers — enabling them to model complex, non-linear relationships.
+
+Universal Function Approximation Theorem: Given enough neurons and layers, a neural network can approximate any function.
+
+3. Categories of Machine Learning
+a. Supervised Learning
+Uses labeled data (input-output pairs).
+
+Typical tasks: Classification, Regression.
+
+Example: Predict salary based on years of experience.
+
+b. Unsupervised Learning
+Uses data without labels.
+
+Typical tasks: Clustering, Association.
+
+c. Reinforcement Learning
+Agent learns via feedback from environment (rewards/punishments).
+
+4. General Machine Learning Workflow
+Define the Problem
+
+Collect & Prepare Data
+
+Split Data:
+
+Training Set: Used to teach the model (e.g., 70%)
+
+Validation Set: To tune parameters (e.g., 15%)
+
+Test Set: To check final accuracy (e.g., 15%)
+
+Define Model Architecture
+
+Train Model
+
+Validate and Hyperparameter Tuning
+
+Test Model
+
+Deploy Model
+
+Monitor Model
+
+5. Linear Regression Explained
+Goal: Predict a continuous variable (e.g., salary) from one or more features (e.g., years of experience).
+
+Equation: y = wx + b
+
+y: Predicted output (salary)
+
+x: Input feature (YOE - Years of Experience)
+
+w: Weight (slope)
+
+b: Bias (intercept)
+
+Loss Function (Measures error):
+
+Mean Squared Error (MSE):
+Loss = (y_pred - y_true)^2
+
+The goal is to minimize this loss.
+
+Predictions Example:
+
+Given YOE = 5, y = 2*5 + 5 = 15
+
+6. Neural Network Architecture
+Components:
+
+Input Layer: Receives data (features)
+
+Hidden Layers: Process data through weighted connections
+
+Output Layer: Produces predictions
+
+Parameters:
+
+Weights (w): Connection strengths
+
+Biases (b): Enable shifting activation function
+
+Multi-Feature Input Example:
+
+Predict house price based on location and area:
+price = w1*x1 + w2*x2 + b
+
+7. Training a Neural Network
+Steps:
+
+Initialize weights and biases (usually randomly)
+
+Forward Pass: Compute predictions using current weights/bias
+
+Compute Loss: Measure difference between predicted and true values
+
+Backward Pass (Backpropagation): Compute gradients of loss w.r.t weights and biases using chain rule
+
+Update weights and biases:
+
+Gradient Descent:
+w_new = w_old - η * ∂Loss/∂w
+
+η (learning rate): Small step to control updates
+
+Repeat (across epochs) until loss minimizes or stops improving
+
+8. Activation Functions
+Activation functions introduce non-linearity into the model, enabling it to learn complex patterns.
+
+Common Activation Functions:
+
+Sigmoid: σ(z) = 1 / (1 + e^-z)
+
+Output: (0, 1)
+
+Useful for binary classification
+
+ReLU (Rectified Linear Unit): f(z) = max(0, z)
+
+Most popular for hidden layers; helps with vanishing gradient
+
+Tanh: tanh(z)
+
+Output: (-1, 1)
+
+Softmax: Converts outputs into probability distributions; used for multi-class classification.
+
+9. Example Applications
+Prediction Tasks: e.g., Salary, house prices
+
+Classification: e.g., Handwritten digit recognition (0–9)
+
+Processing Structured Data: Tabular data with features like price, location, etc.
+
+Analyzing Unstructured Data: Images, audio, text
+
+
+
