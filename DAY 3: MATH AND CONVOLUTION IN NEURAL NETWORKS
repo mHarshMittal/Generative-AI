@@ -1,0 +1,117 @@
+DAY 3: MATH AND CONVOLUTION IN NEURAL NETWORKS
+
+=======================================================
+
+INTRODUCTION TO NEURAL NETWORK PARAMETERS
+
+Neural networks primarily learn using weights and biases.
+
+Weights connect neurons between layers; biases allow shifting of neuron activation thresholds.
+
+These parameters get updated during training to minimize error.
+
+ACTIVATION FUNCTIONS
+
+Decide neuron’s output after computing weighted sum + bias.
+
+Common activation functions:
+
+Sigmoid: Outputs between 0 and 1, good for probabilities.
+
+ReLU (Rectified Linear Unit): Outputs zero if input is negative; otherwise input itself. Good for hidden layers.
+
+Softmax: Converts outputs into probabilities over multiple classes.
+
+NEURAL NETWORK ARCHITECTURE EXAMPLE
+
+Input layer size depends on features; for example, 784 neurons for a 28x28 pixel image.
+
+Hidden layers transform data; number of neurons varies, e.g., 16, 100, or 10.
+
+Output layer size depends on target classes; e.g., 10 neurons for digits (0-9).
+
+Total parameters = (number of weights connecting layers) + (number of biases).
+
+Example calculation:
+
+For layer with 784 inputs and 16 neurons:
+
+weights = 784 * 16 = 12,544
+
+biases = 16
+
+total = 12,560 parameters.
+
+FORWARD PASS COMPUTATION
+
+Calculate weighted sum of inputs + bias for each neuron.
+
+Apply activation function on this value to get neuron output.
+
+Pass outputs forward to next layers.
+
+LOSS FUNCTION AND OPTIMIZATION
+
+Loss function measures difference between predicted outputs and true values.
+
+Mean Squared Error (MSE) is a common example.
+
+Optimization techniques like gradient descent and backpropagation update weights and biases to minimize loss.
+
+DATA BATCHING AND TRAINING
+
+Training data is divided into batches (e.g., 100 samples per batch).
+
+Parameters are updated after each batch pass.
+
+Multiple passes over entire training data are called epochs.
+
+IMAGE DATA EXAMPLE: MNIST
+
+MNIST dataset contains images of 28x28 pixels (784 pixels total).
+
+Each pixel is a feature input to the input layer.
+
+Output is one of 10 classes representing digits 0 through 9.
+
+CONVOLUTION IN NEURAL NETWORKS
+
+Convolutional layers apply filters (kernels) that slide over images to detect features.
+
+Each filter highlights specific patterns like edges, shapes, or textures.
+
+Output of convolutional layer is a feature map representing activations of these filters.
+
+KERNEL / FILTER
+
+A small matrix (e.g., 3x3 or 5x5) moved across the image to detect features.
+
+Parameters of the kernel are learned during training.
+
+Kernels help the network recognize spatial patterns.
+
+EDGE DETECTION EXAMPLE
+
+Applying kernels like the Sobel filter can detect edges in images.
+
+Output emphasizes boundaries and outlines of objects.
+
+HYPERPARAMETERS IN NETWORK DESIGN
+
+Number of layers and neurons affect model complexity and capacity.
+
+Batch size controls how many data points are processed before updating parameters.
+
+Learning rate affects training speed and stability.
+
+SUMMARY
+
+Neural networks learn by adjusting weights and biases through training.
+
+Activation functions add nonlinearity, enabling complex pattern learning.
+
+Convolutional layers specialize in image-like data by learning spatial features.
+
+Understanding parameter counts and forward pass computations helps model design.
+
+Training is done in batches over multiple epochs using optimizers.
